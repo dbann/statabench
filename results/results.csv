@@ -39,3 +39,63 @@ timestamp,model_name,temperature,task_id,domain,result
 2025-08-28 15:38:32,gemma3:270m,0.9,LANG-014B-STRUCT,Command Abbreviation,Incorrect
 2025-08-28 15:38:33,gemma3:270m,0.9,LANG-015A-STRUCT,Factor Variables & Interactions,Incorrect
 2025-08-28 15:38:34,gemma3:270m,0.9,LANG-015B-STRUCT,Factor Variables & Interactions,Incorrect
+2025-08-28 15:54:09,gemma3:4b,0.1,LANG-001-MULTI,Conditional Logic ('if'),Correct
+2025-08-28 15:54:11,gemma3:4b,0.1,LANG-002-MULTI,Command Structure,Correct
+2025-08-28 15:54:12,gemma3:4b,0.1,LANG-003-MULTI,Observation Subsetting ('in'),Correct
+2025-08-28 15:54:14,gemma3:4b,0.1,LANG-004-MULTI,Grouped Operations ('bysort'),Incorrect
+2025-08-28 15:54:15,gemma3:4b,0.1,LANG-005-MULTI,Variable Creation ('generate'),Correct
+2025-08-28 15:54:16,gemma3:4b,0.1,LANG-006-MULTI,Frequency Tables ('tabulate'),Correct
+2025-08-28 15:54:18,gemma3:4b,0.1,LANG-007-MULTI,Extended Functions ('egen'),Correct
+2025-08-28 15:54:19,gemma3:4b,0.1,LANG-008-MULTI,Stored Results ('r-class'),Incorrect
+2025-08-28 15:54:21,gemma3:4b,0.1,LANG-009-MULTI,Data Sorting ('sort'),Correct
+2025-08-28 15:54:22,gemma3:4b,0.1,LANG-010-MULTI,Data Filtering ('keep'),Incorrect
+2025-08-28 15:54:24,gemma3:4b,0.1,LANG-011A-STRUCT,Variable Lists ('varlist'),Incorrect
+2025-08-28 15:54:25,gemma3:4b,0.1,LANG-011B-STRUCT,Variable Lists ('varlist'),Correct
+2025-08-28 15:54:27,gemma3:4b,0.1,LANG-012A-STRUCT,System Variables ('_n'),Incorrect
+2025-08-28 15:54:28,gemma3:4b,0.1,LANG-012B-STRUCT,System Variables ('_n'),Incorrect
+2025-08-28 15:54:30,gemma3:4b,0.1,LANG-013A-STRUCT,Stored Results ('r-class'),Incorrect
+2025-08-28 15:54:31,gemma3:4b,0.1,LANG-013B-STRUCT,Stored Results ('r-class'),Correct
+2025-08-28 15:54:33,gemma3:4b,0.1,LANG-014A-STRUCT,Command Abbreviation,Incorrect
+2025-08-28 15:54:34,gemma3:4b,0.1,LANG-014B-STRUCT,Command Abbreviation,Incorrect
+2025-08-28 15:54:36,gemma3:4b,0.1,LANG-015A-STRUCT,Factor Variables & Interactions,Incorrect
+2025-08-28 15:54:38,gemma3:4b,0.1,LANG-015B-STRUCT,Factor Variables & Interactions,Incorrect
+2025-08-28 15:55:36,gpt-oss:20b,0.1,LANG-001-MULTI,Conditional Logic ('if'),Correct
+2025-08-28 15:55:39,gpt-oss:20b,0.1,LANG-002-MULTI,Command Structure,Correct
+2025-08-28 15:55:43,gpt-oss:20b,0.1,LANG-003-MULTI,Observation Subsetting ('in'),Correct
+2025-08-28 15:55:48,gpt-oss:20b,0.1,LANG-004-MULTI,Grouped Operations ('bysort'),Correct
+2025-08-28 15:55:54,gpt-oss:20b,0.1,LANG-005-MULTI,Variable Creation ('generate'),Correct
+2025-08-28 15:56:55,gpt-oss:20b,0.1,LANG-006-MULTI,Frequency Tables ('tabulate'),Incorrect
+2025-08-28 15:57:03,gpt-oss:20b,0.1,LANG-007-MULTI,Extended Functions ('egen'),Correct
+2025-08-28 15:57:06,gpt-oss:20b,0.1,LANG-008-MULTI,Stored Results ('r-class'),Correct
+2025-08-28 15:57:12,gpt-oss:20b,0.1,LANG-009-MULTI,Data Sorting ('sort'),Correct
+2025-08-28 15:57:21,gpt-oss:20b,0.1,LANG-010-MULTI,Data Filtering ('keep'),Incorrect
+2025-08-28 15:57:29,gpt-oss:20b,0.1,LANG-011A-STRUCT,Variable Lists ('varlist'),Incorrect
+2025-08-28 15:57:33,gpt-oss:20b,0.1,LANG-011B-STRUCT,Variable Lists ('varlist'),Correct
+2025-08-28 15:57:42,gpt-oss:20b,0.1,LANG-012A-STRUCT,System Variables ('_n'),Correct
+2025-08-28 15:57:47,gpt-oss:20b,0.1,LANG-012B-STRUCT,System Variables ('_n'),Correct
+2025-08-28 15:57:54,gpt-oss:20b,0.1,LANG-013A-STRUCT,Stored Results ('r-class'),Incorrect
+2025-08-28 15:57:56,gpt-oss:20b,0.1,LANG-013B-STRUCT,Stored Results ('r-class'),Correct
+2025-08-28 15:58:19,gpt-oss:20b,0.1,LANG-014A-STRUCT,Command Abbreviation,Correct
+2025-08-28 15:58:28,gpt-oss:20b,0.1,LANG-014B-STRUCT,Command Abbreviation,Incorrect
+2025-08-28 15:58:39,gpt-oss:20b,0.1,LANG-015A-STRUCT,Factor Variables & Interactions,Correct
+2025-08-28 15:58:47,gpt-oss:20b,0.1,LANG-015B-STRUCT,Factor Variables & Interactions,Incorrect
+2025-08-28 16:00:24,Qwen3-30B*,0.1,LANG-001-MULTI,Conditional Logic ('if'),Correct
+2025-08-28 16:00:26,Qwen3-30B*,0.1,LANG-002-MULTI,Command Structure,Correct
+2025-08-28 16:00:28,Qwen3-30B*,0.1,LANG-003-MULTI,Observation Subsetting ('in'),Correct
+2025-08-28 16:00:29,Qwen3-30B*,0.1,LANG-004-MULTI,Grouped Operations ('bysort'),Correct
+2025-08-28 16:00:31,Qwen3-30B*,0.1,LANG-005-MULTI,Variable Creation ('generate'),Correct
+2025-08-28 16:00:33,Qwen3-30B*,0.1,LANG-006-MULTI,Frequency Tables ('tabulate'),Correct
+2025-08-28 16:00:34,Qwen3-30B*,0.1,LANG-007-MULTI,Extended Functions ('egen'),Correct
+2025-08-28 16:00:36,Qwen3-30B*,0.1,LANG-008-MULTI,Stored Results ('r-class'),Correct
+2025-08-28 16:00:37,Qwen3-30B*,0.1,LANG-009-MULTI,Data Sorting ('sort'),Correct
+2025-08-28 16:00:39,Qwen3-30B*,0.1,LANG-010-MULTI,Data Filtering ('keep'),Correct
+2025-08-28 16:00:40,Qwen3-30B*,0.1,LANG-011A-STRUCT,Variable Lists ('varlist'),Incorrect
+2025-08-28 16:00:41,Qwen3-30B*,0.1,LANG-011B-STRUCT,Variable Lists ('varlist'),Correct
+2025-08-28 16:00:43,Qwen3-30B*,0.1,LANG-012A-STRUCT,System Variables ('_n'),Correct
+2025-08-28 16:00:45,Qwen3-30B*,0.1,LANG-012B-STRUCT,System Variables ('_n'),Correct
+2025-08-28 16:00:46,Qwen3-30B*,0.1,LANG-013A-STRUCT,Stored Results ('r-class'),Incorrect
+2025-08-28 16:00:48,Qwen3-30B*,0.1,LANG-013B-STRUCT,Stored Results ('r-class'),Correct
+2025-08-28 16:00:50,Qwen3-30B*,0.1,LANG-014A-STRUCT,Command Abbreviation,Correct
+2025-08-28 16:00:51,Qwen3-30B*,0.1,LANG-014B-STRUCT,Command Abbreviation,Incorrect
+2025-08-28 16:00:53,Qwen3-30B*,0.1,LANG-015A-STRUCT,Factor Variables & Interactions,Correct
+2025-08-28 16:00:55,Qwen3-30B*,0.1,LANG-015B-STRUCT,Factor Variables & Interactions,Correct
