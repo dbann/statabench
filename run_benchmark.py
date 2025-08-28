@@ -1,17 +1,17 @@
 import json
 import requests
 import time
+import argparse
+import csv
+from datetime import datetime
+import os
 
 # --- Configuration ---
-# 1. Add the names of all local models you want to test into this list.
-MODELS_TO_TEST = ["hf.co/unsloth/Qwen3-30B-A3B-Instruct-2507-GGUF:Q4_K_M", "gemma3:270m"] 
-
-# 2. This is the standard API endpoint for local servers like Ollama.
-#    Change it if your server uses a different address.
+# API endpoint for local servers like Ollama
 API_URL = "http://localhost:11434/v1/chat/completions"
 BASE_URL = "http://localhost:11434" # For checking server status
 
-# 3. The name of your question file.
+# The name of your question file
 ITEMS_FILE = "items.jsonl"
 # --- End of Configuration ---
 
@@ -27,7 +27,7 @@ def check_server_status():
         print(f"Please make sure your local LLM server (e.g., Ollama) is running.")
         return False
 
-def get_llm_response(prompt_text, model_name):
+def get_llm_response(prompt_text, model_name, temperature):
     """Sends a prompt to the local LLM and gets a JSON response."""
     system_message = "Answer in JSON only. No extra text. Use the schema given."
     
@@ -40,9 +40,7 @@ def get_llm_response(prompt_text, model_name):
         ],
         "format": "json",
         "stream": False,
-        # --- BEST PRACTICE ADDED HERE ---
-        # Set a low temperature for consistent, deterministic results.
-        "temperature": 0.1
+        "temperature": temperature
     }
 
     raw_response_text = ""
@@ -119,9 +117,50 @@ def score_response(question, llm_answer):
     return "Scoring Error", f"Could not determine how to score this question type: '{answer_type}'"
 
 
+def write_csv_header(output_file):
+    """Write the CSV header if the file doesn't exist."""
+    with open(output_file, 'w', newline='') as csvfile:
+        fieldnames = ['timestamp', 'model_name', 'temperature', 'task_id', 'domain', 'result']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+def append_result_to_csv(output_file, model_name, temperature, task_id, domain, result):
+    """Append a single result to the CSV file."""
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    
+    with open(output_file, 'a', newline='') as csvfile:
+        fieldnames = ['timestamp', 'model_name', 'temperature', 'task_id', 'domain', 'result']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writerow({
+            'timestamp': timestamp,
+            'model_name': model_name,
+            'temperature': temperature,
+            'task_id': task_id,
+            'domain': domain,
+            'result': result
+        })
+
 def main():
     """Main function to run the benchmark."""
+    parser = argparse.ArgumentParser(description='Run language model benchmark')
+    parser.add_argument('--model_name', type=str, required=True, help='Name of the model to test')
+    parser.add_argument('--temperature', type=float, required=True, help='Temperature setting for the model')
+    parser.add_argument('--output_file', type=str, default='results.csv', help='Output CSV file name')
+    
+    args = parser.parse_args()
+    
+    # Ensure results directory exists and prepend to output file
+    results_dir = 'results'
+    os.makedirs(results_dir, exist_ok=True)
+    
+    # If output_file doesn't already include the results directory, prepend it
+    if not args.output_file.startswith('results/'):
+        args.output_file = os.path.join(results_dir, args.output_file)
+    
     print(f"--- Stata Benchmark Runner ---")
+    print(f"Model: {args.model_name}")
+    print(f"Temperature: {args.temperature}")
+    print(f"Output file: {args.output_file}")
     
     if not check_server_status():
         return
@@ -133,49 +172,53 @@ def main():
         print(f"Error: The file '{ITEMS_FILE}' was not found in this directory.")
         return
 
-    all_results = {}
+    # Initialize CSV file if it doesn't exist
+    if not os.path.exists(args.output_file):
+        write_csv_header(args.output_file)
+        print(f"Created new CSV file: {args.output_file}")
+    else:
+        print(f"Appending to existing CSV file: {args.output_file}")
+
     total_questions = len(questions)
+    total_correct = 0
 
-    for model_name in MODELS_TO_TEST:
-        print(f"\n--- Starting Benchmark for model: {model_name} ---")
-        total_correct = 0
+    print(f"\n--- Starting Benchmark for model: {args.model_name} ---")
 
-        for i, question in enumerate(questions):
-            task_id = question["task_id"]
-            prompt = question["prompt"]
-            
-            if question['answer_type'] == 'multiple_choice':
-                choices_text = "\n".join([f"{idx}) {choice}" for idx, choice in enumerate(question['choices'])])
-                schema = '{"choice": <integer>}'
-                full_prompt = f"{prompt}\n\nChoices:\n{choices_text}\n\nAnswer with JSON using this schema:\n{schema}"
-            else: # structured_single
-                schema = json.dumps({k: v['type'] for k, v in question['output_schema']['properties'].items()})
-                full_prompt = f"{prompt}\n\nAnswer with JSON using this schema:\n{schema}"
-
-            print(f"\n({i+1}/{total_questions}) Running Task: {task_id}...")
-            
-            llm_answer = get_llm_response(full_prompt, model_name)
-            
-            result, reason = score_response(question, llm_answer)
-
-            if result == "Correct":
-                total_correct += 1
-            
-            print(f"  > Result: {result} ({reason})")
-            time.sleep(1)
+    for i, question in enumerate(questions):
+        task_id = question["task_id"]
+        domain = question["domain"]
+        prompt = question["prompt"]
         
-        all_results[model_name] = {
-            "correct": total_correct,
-            "total": total_questions,
-            "accuracy": f"{total_correct / total_questions:.2%}"
-        }
+        if question['answer_type'] == 'multiple_choice':
+            choices_text = "\n".join([f"{idx}) {choice}" for idx, choice in enumerate(question['choices'])])
+            schema = '{"choice": <integer>}'
+            full_prompt = f"{prompt}\n\nChoices:\n{choices_text}\n\nAnswer with JSON using this schema:\n{schema}"
+        else: # structured_single
+            schema = json.dumps({k: v['type'] for k, v in question['output_schema']['properties'].items()})
+            full_prompt = f"{prompt}\n\nAnswer with JSON using this schema:\n{schema}"
 
-    print("\n\n--- Benchmark Complete: Final Summary ---")
-    for model_name, result in all_results.items():
-        print(f"Model: {model_name}")
-        print(f"  > Score: {result['correct']} / {result['total']}")
-        print(f"  > Accuracy: {result['accuracy']}")
-        print("-" * 20)
+        print(f"\n({i+1}/{total_questions}) Running Task: {task_id}...")
+        
+        llm_answer = get_llm_response(full_prompt, args.model_name, args.temperature)
+        
+        result, reason = score_response(question, llm_answer)
+
+        if result == "Correct":
+            total_correct += 1
+        
+        # Append result to CSV immediately after scoring
+        append_result_to_csv(args.output_file, args.model_name, args.temperature, task_id, domain, result)
+        
+        print(f"  > Result: {result} ({reason})")
+        time.sleep(1)
+
+    accuracy = total_correct / total_questions
+    print(f"\n--- Benchmark Complete ---")
+    print(f"Model: {args.model_name}")
+    print(f"Temperature: {args.temperature}")
+    print(f"Score: {total_correct} / {total_questions}")
+    print(f"Accuracy: {accuracy:.2%}")
+    print(f"Results saved to: {args.output_file}")
 
 
 if __name__ == "__main__":
