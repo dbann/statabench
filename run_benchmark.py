@@ -3,8 +3,8 @@ import requests
 import time
 
 # --- Configuration ---
-# 1. Update this with the name of the local model you are running (e.g., via Ollama)
-LOCAL_MODEL_NAME = "gemma3:4b" 
+# 1. Add the names of all local models you want to test into this list.
+MODELS_TO_TEST = ["hf.co/unsloth/Qwen3-30B-A3B-Instruct-2507-GGUF:Q4_K_M", "gemma3:270m"] 
 
 # 2. This is the standard API endpoint for local servers like Ollama.
 #    Change it if your server uses a different address.
@@ -27,37 +27,37 @@ def check_server_status():
         print(f"Please make sure your local LLM server (e.g., Ollama) is running.")
         return False
 
-def get_llm_response(prompt_text):
+def get_llm_response(prompt_text, model_name):
     """Sends a prompt to the local LLM and gets a JSON response."""
     system_message = "Answer in JSON only. No extra text. Use the schema given."
     
     headers = {"Content-Type": "application/json"}
     payload = {
-        "model": LOCAL_MODEL_NAME,
+        "model": model_name,
         "messages": [
             {"role": "system", "content": system_message},
             {"role": "user", "content": prompt_text}
         ],
-        "format": "json", # This tells Ollama to ensure the output is valid JSON
-        "stream": False
+        "format": "json",
+        "stream": False,
+        # --- BEST PRACTICE ADDED HERE ---
+        # Set a low temperature for consistent, deterministic results.
+        "temperature": 0.1
     }
 
     raw_response_text = ""
     try:
-        # Added a 60-second timeout to give the model enough time to respond
         response = requests.post(API_URL, headers=headers, json=payload, timeout=60)
         response.raise_for_status()
         
         response_data = response.json()
         raw_response_text = response_data['choices'][0]['message']['content']
 
-        # --- FIX ADDED HERE ---
-        # Clean the response in case the model wraps it in a markdown block
         cleaned_text = raw_response_text.strip()
         if cleaned_text.startswith("```json"):
-            cleaned_text = cleaned_text[7:] # Remove ```json
+            cleaned_text = cleaned_text[7:]
         if cleaned_text.endswith("```"):
-            cleaned_text = cleaned_text[:-3] # Remove ```
+            cleaned_text = cleaned_text[:-3]
         
         return json.loads(cleaned_text.strip())
 
@@ -88,43 +88,43 @@ def score_response(question, llm_answer):
         if scoring_rules.get("method") == "choice_equals_index":
             expected_index = question.get("correct_index")
             actual_choice = llm_answer.get("choice")
-            if expected_index == actual_choice:
-                return "Correct", f"Model chose index {actual_choice}."
+            
+            try:
+                if int(expected_index) == int(actual_choice):
+                    return "Correct", f"Model chose index {actual_choice}."
+                else:
+                    return "Incorrect", f"Model chose index {actual_choice}, expected {expected_index}."
+            except (ValueError, TypeError):
+                return "Incorrect", f"Model returned a non-integer choice: '{actual_choice}'."
+
+    elif answer_type == "structured_single":
+        answer_key = list(llm_answer.keys())[0]
+        actual_value = llm_answer.get(answer_key)
+
+        if scoring_rules.get("method") == "numeric_match":
+            expected_value = scoring_rules.get("expected_value")
+            if str(actual_value) == str(expected_value):
+                return "Correct", f"Model answered {actual_value}."
             else:
-                return "Incorrect", f"Model chose index {actual_choice}, expected {expected_index}."
-
-    elif answer_type == "structured":
-        if scoring_rules.get("method") == "number_and_phrase":
-            must_equal_rule = scoring_rules.get("must_equal", {})
-            num_key = list(must_equal_rule.keys())[0]
-            expected_num = must_equal_rule[num_key]
-            actual_num = llm_answer.get(num_key)
-
-            # Be more flexible with numeric types (e.g., model might return "4" instead of 4)
-            if str(actual_num) != str(expected_num):
-                return "Incorrect", f"Numeric check failed. Expected '{num_key}': {expected_num}, got {actual_num}."
-
+                return "Incorrect", f"Numeric check failed. Expected {expected_value}, got {actual_value}."
+        
+        elif scoring_rules.get("method") == "phrase_match":
             accepted_phrases = scoring_rules.get("accepted_phrases", [])
-            text_keys = [k for k in question['output_schema']['properties'].keys() if k != num_key]
-            if not text_keys:
-                 return "Scoring Error", "Could not find text key in schema."
-            text_key = text_keys[0]
-            actual_text = str(llm_answer.get(text_key, "")).lower()
-
+            actual_text = str(actual_value).lower()
             if any(phrase.lower() in actual_text for phrase in accepted_phrases):
-                return "Correct", f"Numeric and phrase checks passed."
+                return "Correct", f"Phrase check passed."
             else:
                 return "Incorrect", f"Phrase check failed. Text '{actual_text}' did not contain any accepted phrases."
 
-    return "Scoring Error", "Could not determine how to score this question type."
+    return "Scoring Error", f"Could not determine how to score this question type: '{answer_type}'"
 
 
 def main():
     """Main function to run the benchmark."""
-    print(f"--- Starting Stata Benchmark for model: {LOCAL_MODEL_NAME} ---")
+    print(f"--- Stata Benchmark Runner ---")
     
     if not check_server_status():
-        return # Stop if the server isn't running
+        return
 
     try:
         with open(ITEMS_FILE, 'r') as f:
@@ -133,36 +133,49 @@ def main():
         print(f"Error: The file '{ITEMS_FILE}' was not found in this directory.")
         return
 
-    total_correct = 0
+    all_results = {}
     total_questions = len(questions)
 
-    for i, question in enumerate(questions):
-        task_id = question["task_id"]
-        prompt = question["prompt"]
-        
-        if question['answer_type'] == 'multiple_choice':
-            choices_text = "\n".join([f"{idx}) {choice}" for idx, choice in enumerate(question['choices'])])
-            schema = '{"choice": <integer>}'
-            full_prompt = f"{prompt}\n\nChoices:\n{choices_text}\n\nAnswer with JSON using this schema:\n{schema}"
-        else: # structured
-            schema = json.dumps({k: v['type'] for k, v in question['output_schema']['properties'].items()})
-            full_prompt = f"{prompt}\n\nAnswer with JSON using this schema:\n{schema}"
+    for model_name in MODELS_TO_TEST:
+        print(f"\n--- Starting Benchmark for model: {model_name} ---")
+        total_correct = 0
 
-        print(f"\n({i+1}/{total_questions}) Running Task: {task_id}...")
-        
-        llm_answer = get_llm_response(full_prompt)
-        
-        result, reason = score_response(question, llm_answer)
+        for i, question in enumerate(questions):
+            task_id = question["task_id"]
+            prompt = question["prompt"]
+            
+            if question['answer_type'] == 'multiple_choice':
+                choices_text = "\n".join([f"{idx}) {choice}" for idx, choice in enumerate(question['choices'])])
+                schema = '{"choice": <integer>}'
+                full_prompt = f"{prompt}\n\nChoices:\n{choices_text}\n\nAnswer with JSON using this schema:\n{schema}"
+            else: # structured_single
+                schema = json.dumps({k: v['type'] for k, v in question['output_schema']['properties'].items()})
+                full_prompt = f"{prompt}\n\nAnswer with JSON using this schema:\n{schema}"
 
-        if result == "Correct":
-            total_correct += 1
-        
-        print(f"  > Result: {result} ({reason})")
-        time.sleep(1) # Pause for 1 second to avoid overwhelming the server
+            print(f"\n({i+1}/{total_questions}) Running Task: {task_id}...")
+            
+            llm_answer = get_llm_response(full_prompt, model_name)
+            
+            result, reason = score_response(question, llm_answer)
 
-    print("\n--- Benchmark Complete ---")
-    print(f"Final Score: {total_correct} / {total_questions} Correct")
-    print(f"Accuracy: {total_correct / total_questions:.2%}")
+            if result == "Correct":
+                total_correct += 1
+            
+            print(f"  > Result: {result} ({reason})")
+            time.sleep(1)
+        
+        all_results[model_name] = {
+            "correct": total_correct,
+            "total": total_questions,
+            "accuracy": f"{total_correct / total_questions:.2%}"
+        }
+
+    print("\n\n--- Benchmark Complete: Final Summary ---")
+    for model_name, result in all_results.items():
+        print(f"Model: {model_name}")
+        print(f"  > Score: {result['correct']} / {result['total']}")
+        print(f"  > Accuracy: {result['accuracy']}")
+        print("-" * 20)
 
 
 if __name__ == "__main__":
