@@ -15,12 +15,14 @@
   - Ensure balanced representation across topic areas
 
 ## 🚀 Frontier Model Integration
-- [ ] **Add option to compare with frontier API model**
-  - Implement support for OpenAI GPT-4/GPT-3.5
-  - Add Anthropic Claude API integration
-  - Include other commercial models (Gemini, etc.)
-  - Handle API authentication and rate limiting
-  - Add cost tracking for API calls
+- [x] **Add option to compare with frontier API model**
+  - ✅ Implement support for OpenAI GPT-4/GPT-3.5
+  - ✅ Add DeepSeek API integration
+  - ✅ Add Anthropic Claude API integration
+  - ✅ Handle API authentication via .env file
+  - [ ] Add cost tracking for API calls
+  - [ ] Include other commercial models (Gemini, etc.)
+  - [ ] Add rate limiting and retry logic
 
 ## 📄 Enhanced Reporting
 - [ ] **Create nice markdown format output for model comparisons**

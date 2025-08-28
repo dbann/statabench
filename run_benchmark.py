@@ -5,6 +5,14 @@ import argparse
 import csv
 from datetime import datetime
 import os
+from dotenv import load_dotenv
+try:
+    from openai import OpenAI
+except ImportError:
+    OpenAI = None
+
+# Load environment variables
+load_dotenv()
 
 # --- Configuration ---
 # API endpoint for local servers like Ollama
@@ -13,6 +21,23 @@ BASE_URL = "http://localhost:11434" # For checking server status
 
 # The name of your question file
 ITEMS_FILE = "items.jsonl"
+
+# Supported API providers
+API_PROVIDERS = {
+    'openai': {
+        'models': ['gpt-4', 'gpt-4-turbo', 'gpt-3.5-turbo'],
+        'env_key': 'OPENAI_API_KEY'
+    },
+    'deepseek': {
+        'models': ['deepseek-chat', 'deepseek-coder'],
+        'env_key': 'DEEPSEEK_API_KEY',
+        'base_url': 'https://api.deepseek.com/v1'
+    },
+    'anthropic': {
+        'models': ['claude-3-haiku', 'claude-3-sonnet', 'claude-3-opus'],
+        'env_key': 'ANTHROPIC_API_KEY'
+    }
+}
 # --- End of Configuration ---
 
 def check_server_status():
@@ -27,8 +52,63 @@ def check_server_status():
         print(f"Please make sure your local LLM server (e.g., Ollama) is running.")
         return False
 
-def get_llm_response(prompt_text, model_name, temperature):
-    """Sends a prompt to the local LLM and gets a JSON response."""
+def get_api_response(prompt_text, model_name, temperature, provider='openai', base_url=None):
+    """Get response from external API (OpenAI-compatible)."""
+    if OpenAI is None:
+        print("Error: OpenAI library not installed. Run: pip install openai")
+        return None
+    
+    # Get API key from environment
+    provider_config = API_PROVIDERS.get(provider, API_PROVIDERS['openai'])
+    api_key = os.getenv(provider_config['env_key'])
+    
+    if not api_key:
+        print(f"Error: {provider_config['env_key']} not found in environment variables.")
+        print(f"Please add it to your .env file: {provider_config['env_key']}=your_key_here")
+        return None
+    
+    try:
+        # Initialize client
+        client_kwargs = {'api_key': api_key}
+        if base_url or provider_config.get('base_url'):
+            client_kwargs['base_url'] = base_url or provider_config['base_url']
+        
+        client = OpenAI(**client_kwargs)
+        
+        # Make API call
+        response = client.chat.completions.create(
+            model=model_name,
+            messages=[
+                {"role": "system", "content": "Answer in JSON only. No extra text. Use the schema given."},
+                {"role": "user", "content": prompt_text}
+            ],
+            temperature=temperature,
+            max_tokens=1000
+        )
+        
+        raw_response_text = response.choices[0].message.content
+        
+        # Clean up response
+        cleaned_text = raw_response_text.strip()
+        if cleaned_text.startswith("```json"):
+            cleaned_text = cleaned_text[7:]
+        if cleaned_text.endswith("```"):
+            cleaned_text = cleaned_text[:-3]
+        
+        return json.loads(cleaned_text.strip())
+        
+    except Exception as e:
+        print(f"\n--- API Error ({provider}) ---")
+        print(f"Error communicating with {provider} API: {e}")
+        return {"error": f"API call failed: {str(e)}"}
+
+def get_llm_response(prompt_text, model_name, temperature, api_provider=None):
+    """Sends a prompt to local or external LLM and gets a JSON response."""
+    # Check if this is an API model
+    if api_provider:
+        return get_api_response(prompt_text, model_name, temperature, api_provider)
+    
+    # Original local server logic
     system_message = "Answer in JSON only. No extra text. Use the schema given."
     
     headers = {"Content-Type": "application/json"}
@@ -140,14 +220,26 @@ def append_result_to_csv(output_file, model_name, temperature, task_id, domain, 
             'result': result
         })
 
+def detect_api_provider(model_name):
+    """Auto-detect API provider based on model name."""
+    for provider, config in API_PROVIDERS.items():
+        if any(model in model_name for model in config['models']):
+            return provider
+    return None
+
 def main():
     """Main function to run the benchmark."""
     parser = argparse.ArgumentParser(description='Run language model benchmark')
     parser.add_argument('--model_name', type=str, required=True, help='Name of the model to test')
     parser.add_argument('--temperature', type=float, required=True, help='Temperature setting for the model')
     parser.add_argument('--output_file', type=str, default='results.csv', help='Output CSV file name')
+    parser.add_argument('--api_provider', type=str, choices=list(API_PROVIDERS.keys()), 
+                       help='API provider (auto-detected if not specified)')
     
     args = parser.parse_args()
+    
+    # Auto-detect API provider if not specified
+    api_provider = args.api_provider or detect_api_provider(args.model_name)
     
     # Ensure results directory exists and prepend to output file
     results_dir = 'results'
@@ -160,9 +252,11 @@ def main():
     print(f"--- Stata Benchmark Runner ---")
     print(f"Model: {args.model_name}")
     print(f"Temperature: {args.temperature}")
+    print(f"API Provider: {api_provider or 'Local (Ollama)'}")
     print(f"Output file: {args.output_file}")
     
-    if not check_server_status():
+    # Only check local server status if not using API
+    if not api_provider and not check_server_status():
         return
 
     try:
@@ -199,7 +293,7 @@ def main():
 
         print(f"\n({i+1}/{total_questions}) Running Task: {task_id}...")
         
-        llm_answer = get_llm_response(full_prompt, args.model_name, args.temperature)
+        llm_answer = get_llm_response(full_prompt, args.model_name, args.temperature, api_provider)
         
         result, reason = score_response(question, llm_answer)
 
