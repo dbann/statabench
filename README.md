@@ -2,7 +2,7 @@
 
 **An evaluation suite testing how well AI language models understand Stata statistical software**
 
-> ⚠️ **Work in Progress**: This benchmark is actively being developed and refined. Results and methodology may change as we expand the test coverage and improve evaluation methods.
+> ⚠️ **Work in Progress**: This benchmark is a work-in-progress. Contributions welcome (see below).
 
 ## What is this?
 
@@ -97,7 +97,7 @@ Our initial evaluation shows promising performance from models that can run loca
 
 ![Stata Benchmark Results](results/plot_overall_accuracy.png)
 
-*Results demonstrate that several local models achieve high performance on Stata knowledge tasks, making them suitable for sensitive data analysis in secure environments.*
+*Initial results suggest that several local models achieve high performance on Stata knowledge tasks, potentially making them useful for sensitive data analysis in secure senvironments.*
 
 After running the benchmark, you'll also see console output like:
 
