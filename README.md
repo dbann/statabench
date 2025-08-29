@@ -2,6 +2,8 @@
 
 **An evaluation suite testing how well AI language models understand Stata statistical software**
 
+> ⚠️ **Work in Progress**: This benchmark is actively being developed and refined. Results and methodology may change as we expand the test coverage and improve evaluation methods.
+
 ## What is this?
 
 This toolkit evaluates Large Language Models (LLMs) on their knowledge of Stata - a statistical software package widely used in economics, health research, and social sciences. The benchmark tests both **local models** (running on your computer) and **cloud-based models** (accessed via internet APIs).
@@ -91,7 +93,13 @@ This creates professional charts showing:
 
 ## Example Results
 
-After running the benchmark, you'll see output like:
+Our initial evaluation shows promising performance from models that can run locally on consumer hardware:
+
+![Stata Benchmark Results](results/plot_overall_accuracy.png)
+
+*Results demonstrate that several local models achieve high performance on Stata knowledge tasks, making them suitable for sensitive data analysis in secure environments.*
+
+After running the benchmark, you'll also see console output like:
 
 ```
 ======================================================================
