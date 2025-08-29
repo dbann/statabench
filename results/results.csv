@@ -1,101 +1,135 @@
 timestamp,model_name,temperature,task_id,domain,result
-2025-08-28 15:37:32,gemma3:270m,0.1,LANG-001-MULTI,Conditional Logic ('if'),Correct
-2025-08-28 15:37:34,gemma3:270m,0.1,LANG-002-MULTI,Command Structure,Correct
-2025-08-28 15:37:35,gemma3:270m,0.1,LANG-003-MULTI,Observation Subsetting ('in'),Incorrect
-2025-08-28 15:37:36,gemma3:270m,0.1,LANG-004-MULTI,Grouped Operations ('bysort'),Correct
-2025-08-28 15:37:37,gemma3:270m,0.1,LANG-005-MULTI,Variable Creation ('generate'),Correct
-2025-08-28 15:37:38,gemma3:270m,0.1,LANG-006-MULTI,Frequency Tables ('tabulate'),Incorrect
-2025-08-28 15:37:39,gemma3:270m,0.1,LANG-007-MULTI,Extended Functions ('egen'),Incorrect
-2025-08-28 15:37:40,gemma3:270m,0.1,LANG-008-MULTI,Stored Results ('r-class'),Correct
-2025-08-28 15:37:42,gemma3:270m,0.1,LANG-009-MULTI,Data Sorting ('sort'),Incorrect
-2025-08-28 15:37:43,gemma3:270m,0.1,LANG-010-MULTI,Data Filtering ('keep'),Incorrect
-2025-08-28 15:37:44,gemma3:270m,0.1,LANG-011A-STRUCT,Variable Lists ('varlist'),Incorrect
-2025-08-28 15:37:45,gemma3:270m,0.1,LANG-011B-STRUCT,Variable Lists ('varlist'),Incorrect
-2025-08-28 15:37:46,gemma3:270m,0.1,LANG-012A-STRUCT,System Variables ('_n'),Incorrect
-2025-08-28 15:37:47,gemma3:270m,0.1,LANG-012B-STRUCT,System Variables ('_n'),Incorrect
-2025-08-28 15:37:48,gemma3:270m,0.1,LANG-013A-STRUCT,Stored Results ('r-class'),Incorrect
-2025-08-28 15:37:50,gemma3:270m,0.1,LANG-013B-STRUCT,Stored Results ('r-class'),Incorrect
-2025-08-28 15:37:51,gemma3:270m,0.1,LANG-014A-STRUCT,Command Abbreviation,Correct
-2025-08-28 15:37:52,gemma3:270m,0.1,LANG-014B-STRUCT,Command Abbreviation,Incorrect
-2025-08-28 15:37:53,gemma3:270m,0.1,LANG-015A-STRUCT,Factor Variables & Interactions,Incorrect
-2025-08-28 15:37:54,gemma3:270m,0.1,LANG-015B-STRUCT,Factor Variables & Interactions,Incorrect
-2025-08-28 15:38:12,gemma3:270m,0.9,LANG-001-MULTI,Conditional Logic ('if'),Correct
-2025-08-28 15:38:13,gemma3:270m,0.9,LANG-002-MULTI,Command Structure,Correct
-2025-08-28 15:38:15,gemma3:270m,0.9,LANG-003-MULTI,Observation Subsetting ('in'),Incorrect
-2025-08-28 15:38:16,gemma3:270m,0.9,LANG-004-MULTI,Grouped Operations ('bysort'),Correct
-2025-08-28 15:38:17,gemma3:270m,0.9,LANG-005-MULTI,Variable Creation ('generate'),Correct
-2025-08-28 15:38:18,gemma3:270m,0.9,LANG-006-MULTI,Frequency Tables ('tabulate'),Incorrect
-2025-08-28 15:38:19,gemma3:270m,0.9,LANG-007-MULTI,Extended Functions ('egen'),Incorrect
-2025-08-28 15:38:20,gemma3:270m,0.9,LANG-008-MULTI,Stored Results ('r-class'),Correct
-2025-08-28 15:38:21,gemma3:270m,0.9,LANG-009-MULTI,Data Sorting ('sort'),Correct
-2025-08-28 15:38:23,gemma3:270m,0.9,LANG-010-MULTI,Data Filtering ('keep'),Incorrect
-2025-08-28 15:38:24,gemma3:270m,0.9,LANG-011A-STRUCT,Variable Lists ('varlist'),Incorrect
-2025-08-28 15:38:25,gemma3:270m,0.9,LANG-011B-STRUCT,Variable Lists ('varlist'),Incorrect
-2025-08-28 15:38:26,gemma3:270m,0.9,LANG-012A-STRUCT,System Variables ('_n'),Incorrect
-2025-08-28 15:38:27,gemma3:270m,0.9,LANG-012B-STRUCT,System Variables ('_n'),Incorrect
-2025-08-28 15:38:28,gemma3:270m,0.9,LANG-013A-STRUCT,Stored Results ('r-class'),Incorrect
-2025-08-28 15:38:29,gemma3:270m,0.9,LANG-013B-STRUCT,Stored Results ('r-class'),Incorrect
-2025-08-28 15:38:30,gemma3:270m,0.9,LANG-014A-STRUCT,Command Abbreviation,Incorrect
-2025-08-28 15:38:32,gemma3:270m,0.9,LANG-014B-STRUCT,Command Abbreviation,Incorrect
-2025-08-28 15:38:33,gemma3:270m,0.9,LANG-015A-STRUCT,Factor Variables & Interactions,Incorrect
-2025-08-28 15:38:34,gemma3:270m,0.9,LANG-015B-STRUCT,Factor Variables & Interactions,Incorrect
-2025-08-28 15:54:09,gemma3:4b,0.1,LANG-001-MULTI,Conditional Logic ('if'),Correct
-2025-08-28 15:54:11,gemma3:4b,0.1,LANG-002-MULTI,Command Structure,Correct
-2025-08-28 15:54:12,gemma3:4b,0.1,LANG-003-MULTI,Observation Subsetting ('in'),Correct
-2025-08-28 15:54:14,gemma3:4b,0.1,LANG-004-MULTI,Grouped Operations ('bysort'),Incorrect
-2025-08-28 15:54:15,gemma3:4b,0.1,LANG-005-MULTI,Variable Creation ('generate'),Correct
-2025-08-28 15:54:16,gemma3:4b,0.1,LANG-006-MULTI,Frequency Tables ('tabulate'),Correct
-2025-08-28 15:54:18,gemma3:4b,0.1,LANG-007-MULTI,Extended Functions ('egen'),Correct
-2025-08-28 15:54:19,gemma3:4b,0.1,LANG-008-MULTI,Stored Results ('r-class'),Incorrect
-2025-08-28 15:54:21,gemma3:4b,0.1,LANG-009-MULTI,Data Sorting ('sort'),Correct
-2025-08-28 15:54:22,gemma3:4b,0.1,LANG-010-MULTI,Data Filtering ('keep'),Incorrect
-2025-08-28 15:54:24,gemma3:4b,0.1,LANG-011A-STRUCT,Variable Lists ('varlist'),Incorrect
-2025-08-28 15:54:25,gemma3:4b,0.1,LANG-011B-STRUCT,Variable Lists ('varlist'),Correct
-2025-08-28 15:54:27,gemma3:4b,0.1,LANG-012A-STRUCT,System Variables ('_n'),Incorrect
-2025-08-28 15:54:28,gemma3:4b,0.1,LANG-012B-STRUCT,System Variables ('_n'),Incorrect
-2025-08-28 15:54:30,gemma3:4b,0.1,LANG-013A-STRUCT,Stored Results ('r-class'),Incorrect
-2025-08-28 15:54:31,gemma3:4b,0.1,LANG-013B-STRUCT,Stored Results ('r-class'),Correct
-2025-08-28 15:54:33,gemma3:4b,0.1,LANG-014A-STRUCT,Command Abbreviation,Incorrect
-2025-08-28 15:54:34,gemma3:4b,0.1,LANG-014B-STRUCT,Command Abbreviation,Incorrect
-2025-08-28 15:54:36,gemma3:4b,0.1,LANG-015A-STRUCT,Factor Variables & Interactions,Incorrect
-2025-08-28 15:54:38,gemma3:4b,0.1,LANG-015B-STRUCT,Factor Variables & Interactions,Incorrect
-2025-08-28 15:55:36,gpt-oss:20b,0.1,LANG-001-MULTI,Conditional Logic ('if'),Correct
-2025-08-28 15:55:39,gpt-oss:20b,0.1,LANG-002-MULTI,Command Structure,Correct
-2025-08-28 15:55:43,gpt-oss:20b,0.1,LANG-003-MULTI,Observation Subsetting ('in'),Correct
-2025-08-28 15:55:48,gpt-oss:20b,0.1,LANG-004-MULTI,Grouped Operations ('bysort'),Correct
-2025-08-28 15:55:54,gpt-oss:20b,0.1,LANG-005-MULTI,Variable Creation ('generate'),Correct
-2025-08-28 15:56:55,gpt-oss:20b,0.1,LANG-006-MULTI,Frequency Tables ('tabulate'),Incorrect
-2025-08-28 15:57:03,gpt-oss:20b,0.1,LANG-007-MULTI,Extended Functions ('egen'),Correct
-2025-08-28 15:57:06,gpt-oss:20b,0.1,LANG-008-MULTI,Stored Results ('r-class'),Correct
-2025-08-28 15:57:12,gpt-oss:20b,0.1,LANG-009-MULTI,Data Sorting ('sort'),Correct
-2025-08-28 15:57:21,gpt-oss:20b,0.1,LANG-010-MULTI,Data Filtering ('keep'),Incorrect
-2025-08-28 15:57:29,gpt-oss:20b,0.1,LANG-011A-STRUCT,Variable Lists ('varlist'),Incorrect
-2025-08-28 15:57:33,gpt-oss:20b,0.1,LANG-011B-STRUCT,Variable Lists ('varlist'),Correct
-2025-08-28 15:57:42,gpt-oss:20b,0.1,LANG-012A-STRUCT,System Variables ('_n'),Correct
-2025-08-28 15:57:47,gpt-oss:20b,0.1,LANG-012B-STRUCT,System Variables ('_n'),Correct
-2025-08-28 15:57:54,gpt-oss:20b,0.1,LANG-013A-STRUCT,Stored Results ('r-class'),Incorrect
-2025-08-28 15:57:56,gpt-oss:20b,0.1,LANG-013B-STRUCT,Stored Results ('r-class'),Correct
-2025-08-28 15:58:19,gpt-oss:20b,0.1,LANG-014A-STRUCT,Command Abbreviation,Correct
-2025-08-28 15:58:28,gpt-oss:20b,0.1,LANG-014B-STRUCT,Command Abbreviation,Incorrect
-2025-08-28 15:58:39,gpt-oss:20b,0.1,LANG-015A-STRUCT,Factor Variables & Interactions,Correct
-2025-08-28 15:58:47,gpt-oss:20b,0.1,LANG-015B-STRUCT,Factor Variables & Interactions,Incorrect
-2025-08-28 16:00:24,Qwen3-30B*,0.1,LANG-001-MULTI,Conditional Logic ('if'),Correct
-2025-08-28 16:00:26,Qwen3-30B*,0.1,LANG-002-MULTI,Command Structure,Correct
-2025-08-28 16:00:28,Qwen3-30B*,0.1,LANG-003-MULTI,Observation Subsetting ('in'),Correct
-2025-08-28 16:00:29,Qwen3-30B*,0.1,LANG-004-MULTI,Grouped Operations ('bysort'),Correct
-2025-08-28 16:00:31,Qwen3-30B*,0.1,LANG-005-MULTI,Variable Creation ('generate'),Correct
-2025-08-28 16:00:33,Qwen3-30B*,0.1,LANG-006-MULTI,Frequency Tables ('tabulate'),Correct
-2025-08-28 16:00:34,Qwen3-30B*,0.1,LANG-007-MULTI,Extended Functions ('egen'),Correct
-2025-08-28 16:00:36,Qwen3-30B*,0.1,LANG-008-MULTI,Stored Results ('r-class'),Correct
-2025-08-28 16:00:37,Qwen3-30B*,0.1,LANG-009-MULTI,Data Sorting ('sort'),Correct
-2025-08-28 16:00:39,Qwen3-30B*,0.1,LANG-010-MULTI,Data Filtering ('keep'),Correct
-2025-08-28 16:00:40,Qwen3-30B*,0.1,LANG-011A-STRUCT,Variable Lists ('varlist'),Incorrect
-2025-08-28 16:00:41,Qwen3-30B*,0.1,LANG-011B-STRUCT,Variable Lists ('varlist'),Correct
-2025-08-28 16:00:43,Qwen3-30B*,0.1,LANG-012A-STRUCT,System Variables ('_n'),Correct
-2025-08-28 16:00:45,Qwen3-30B*,0.1,LANG-012B-STRUCT,System Variables ('_n'),Correct
-2025-08-28 16:00:46,Qwen3-30B*,0.1,LANG-013A-STRUCT,Stored Results ('r-class'),Incorrect
-2025-08-28 16:00:48,Qwen3-30B*,0.1,LANG-013B-STRUCT,Stored Results ('r-class'),Correct
-2025-08-28 16:00:50,Qwen3-30B*,0.1,LANG-014A-STRUCT,Command Abbreviation,Correct
-2025-08-28 16:00:51,Qwen3-30B*,0.1,LANG-014B-STRUCT,Command Abbreviation,Incorrect
-2025-08-28 16:00:53,Qwen3-30B*,0.1,LANG-015A-STRUCT,Factor Variables & Interactions,Correct
-2025-08-28 16:00:55,Qwen3-30B*,0.1,LANG-015B-STRUCT,Factor Variables & Interactions,Correct
+2025-08-28 17:52:24,gemma3:270m,0.1,UPD-SYN-002-MULTI,Do-file Syntax,Incorrect
+2025-08-28 17:52:25,gemma3:270m,0.1,UPD-SYN-003-MULTI,Naming Conventions,Incorrect
+2025-08-28 17:52:26,gemma3:270m,0.1,UPD-SYN-004-MULTI,Macros,Incorrect
+2025-08-28 17:52:27,gemma3:270m,0.1,UPD-SYN-005-MULTI,Loops,Incorrect
+2025-08-28 17:52:28,gemma3:270m,0.1,UPD-SYN-006-MULTI,Wildcards,Incorrect
+2025-08-28 17:52:29,gemma3:270m,0.1,UPD-DM-001-MULTI,Memory Management,Incorrect
+2025-08-28 17:52:30,gemma3:270m,0.1,UPD-DM-002-MULTI,Combining Datasets,Incorrect
+2025-08-28 17:52:32,gemma3:270m,0.1,UPD-DM-003-MULTI,Data Import,Correct
+2025-08-28 17:52:33,gemma3:270m,0.1,UPD-DM-004-MULTI,Merging Datasets,Incorrect
+2025-08-28 17:52:34,gemma3:270m,0.1,UPD-DM-005-MULTI,Reshape Operations,Incorrect
+2025-08-28 17:52:35,gemma3:270m,0.1,UPD-DM-006-MULTI,Preserve/Restore,Incorrect
+2025-08-28 17:52:36,gemma3:270m,0.1,UPD-MANIP-001-MULTI,Date and Time Variables,Correct
+2025-08-28 17:52:37,gemma3:270m,0.1,UPD-MANIP-002-MULTI,String Conversion,Incorrect
+2025-08-28 17:52:39,gemma3:270m,0.1,UPD-MANIP-003-MULTI,Categorical Variables,Correct
+2025-08-28 17:52:40,gemma3:270m,0.1,UPD-MANIP-004-MULTI,egen Functions,Incorrect
+2025-08-28 17:52:41,gemma3:270m,0.1,UPD-MANIP-005-MULTI,Factor Variables,Correct
+2025-08-28 17:52:42,gemma3:270m,0.1,UPD-MANIP-006-MULTI,System Variables,Correct
+2025-08-28 17:52:43,gemma3:270m,0.1,UPD-ANALYSIS-001-MULTI,Postestimation Commands,Incorrect
+2025-08-28 17:52:44,gemma3:270m,0.1,UPD-ANALYSIS-002-MULTI,Hypothesis Testing,Incorrect
+2025-08-28 17:52:45,gemma3:270m,0.1,UPD-ANALYSIS-003-MULTI,Estimation Workflow,Incorrect
+2025-08-28 17:52:46,gemma3:270m,0.1,UPD-ANALYSIS-004-MULTI,Panel Data,Correct
+2025-08-28 17:52:48,gemma3:270m,0.1,UPD-ANALYSIS-005-MULTI,Robust Standard Errors,Incorrect
+2025-08-28 17:52:49,gemma3:270m,0.1,UPD-ANALYSIS-006-MULTI,Margins,Incorrect
+2025-08-28 17:52:50,gemma3:270m,0.1,UPD-PLOT-001-MULTI,Scatter Plots,Incorrect
+2025-08-28 17:52:51,gemma3:270m,0.1,UPD-PLOT-002-MULTI,Postestimation Graphing,Incorrect
+2025-08-28 17:52:52,gemma3:270m,0.1,UPD-PLOT-003-MULTI,Saving Graphs,Incorrect
+2025-08-28 17:53:10,deepseek-chat,0.1,UPD-SYN-001-MULTI,Operators,Correct
+2025-08-28 17:53:15,deepseek-chat,0.1,UPD-SYN-002-MULTI,Do-file Syntax,Correct
+2025-08-28 17:53:20,deepseek-chat,0.1,UPD-SYN-003-MULTI,Naming Conventions,Incorrect
+2025-08-28 17:53:24,deepseek-chat,0.1,UPD-SYN-004-MULTI,Macros,Correct
+2025-08-28 17:53:28,deepseek-chat,0.1,UPD-SYN-005-MULTI,Loops,Correct
+2025-08-28 17:53:32,deepseek-chat,0.1,UPD-SYN-006-MULTI,Wildcards,Correct
+2025-08-28 17:53:37,deepseek-chat,0.1,UPD-DM-001-MULTI,Memory Management,Correct
+2025-08-28 17:53:41,deepseek-chat,0.1,UPD-DM-002-MULTI,Combining Datasets,Correct
+2025-08-28 17:53:46,deepseek-chat,0.1,UPD-DM-003-MULTI,Data Import,Correct
+2025-08-28 17:53:50,deepseek-chat,0.1,UPD-DM-004-MULTI,Merging Datasets,Correct
+2025-08-28 17:53:55,deepseek-chat,0.1,UPD-DM-005-MULTI,Reshape Operations,Correct
+2025-08-28 17:53:59,deepseek-chat,0.1,UPD-DM-006-MULTI,Preserve/Restore,Correct
+2025-08-28 17:54:04,deepseek-chat,0.1,UPD-MANIP-001-MULTI,Date and Time Variables,Correct
+2025-08-28 17:54:08,deepseek-chat,0.1,UPD-MANIP-002-MULTI,String Conversion,Correct
+2025-08-28 17:54:13,deepseek-chat,0.1,UPD-MANIP-003-MULTI,Categorical Variables,Correct
+2025-08-28 17:54:17,deepseek-chat,0.1,UPD-MANIP-004-MULTI,egen Functions,Correct
+2025-08-28 17:54:22,deepseek-chat,0.1,UPD-MANIP-005-MULTI,Factor Variables,Correct
+2025-08-28 17:54:27,deepseek-chat,0.1,UPD-MANIP-006-MULTI,System Variables,Correct
+2025-08-28 17:54:32,deepseek-chat,0.1,UPD-ANALYSIS-001-MULTI,Postestimation Commands,Correct
+2025-08-28 17:54:36,deepseek-chat,0.1,UPD-ANALYSIS-002-MULTI,Hypothesis Testing,Correct
+2025-08-28 17:54:41,deepseek-chat,0.1,UPD-ANALYSIS-003-MULTI,Estimation Workflow,Incorrect
+2025-08-28 17:54:45,deepseek-chat,0.1,UPD-ANALYSIS-004-MULTI,Panel Data,Correct
+2025-08-28 17:54:50,deepseek-chat,0.1,UPD-ANALYSIS-005-MULTI,Robust Standard Errors,Correct
+2025-08-28 17:54:54,deepseek-chat,0.1,UPD-ANALYSIS-006-MULTI,Margins,Correct
+2025-08-28 17:54:59,deepseek-chat,0.1,UPD-PLOT-001-MULTI,Scatter Plots,Correct
+2025-08-28 17:55:03,deepseek-chat,0.1,UPD-PLOT-002-MULTI,Postestimation Graphing,Correct
+2025-08-28 17:55:07,deepseek-chat,0.1,UPD-PLOT-003-MULTI,Saving Graphs,Correct
+2025-08-28 17:55:48,gpt-oss:20b,0.1,UPD-SYN-001-MULTI,Operators,Correct
+2025-08-28 17:56:00,gpt-oss:20b,0.1,UPD-SYN-002-MULTI,Do-file Syntax,Correct
+2025-08-28 17:56:07,gpt-oss:20b,0.1,UPD-SYN-003-MULTI,Naming Conventions,Incorrect
+2025-08-28 17:56:10,gpt-oss:20b,0.1,UPD-SYN-004-MULTI,Macros,Correct
+2025-08-28 17:56:19,gpt-oss:20b,0.1,UPD-SYN-005-MULTI,Loops,Correct
+2025-08-28 17:56:25,gpt-oss:20b,0.1,UPD-SYN-006-MULTI,Wildcards,Correct
+2025-08-28 17:56:29,gpt-oss:20b,0.1,UPD-DM-001-MULTI,Memory Management,Correct
+2025-08-28 17:56:32,gpt-oss:20b,0.1,UPD-DM-002-MULTI,Combining Datasets,Correct
+2025-08-28 17:56:35,gpt-oss:20b,0.1,UPD-DM-003-MULTI,Data Import,Correct
+2025-08-28 17:56:42,gpt-oss:20b,0.1,UPD-DM-004-MULTI,Merging Datasets,Correct
+2025-08-28 17:56:45,gpt-oss:20b,0.1,UPD-DM-005-MULTI,Reshape Operations,Correct
+2025-08-28 17:56:50,gpt-oss:20b,0.1,UPD-DM-006-MULTI,Preserve/Restore,Correct
+2025-08-28 17:56:54,gpt-oss:20b,0.1,UPD-MANIP-001-MULTI,Date and Time Variables,Correct
+2025-08-28 17:56:57,gpt-oss:20b,0.1,UPD-MANIP-002-MULTI,String Conversion,Correct
+2025-08-28 17:57:00,gpt-oss:20b,0.1,UPD-MANIP-003-MULTI,Categorical Variables,Correct
+2025-08-28 17:57:03,gpt-oss:20b,0.1,UPD-MANIP-004-MULTI,egen Functions,Correct
+2025-08-28 17:57:06,gpt-oss:20b,0.1,UPD-MANIP-005-MULTI,Factor Variables,Correct
+2025-08-28 17:57:10,gpt-oss:20b,0.1,UPD-MANIP-006-MULTI,System Variables,Correct
+2025-08-28 17:57:13,gpt-oss:20b,0.1,UPD-ANALYSIS-001-MULTI,Postestimation Commands,Correct
+2025-08-28 17:57:17,gpt-oss:20b,0.1,UPD-ANALYSIS-002-MULTI,Hypothesis Testing,Correct
+2025-08-28 17:57:22,gpt-oss:20b,0.1,UPD-ANALYSIS-003-MULTI,Estimation Workflow,Incorrect
+2025-08-28 17:57:25,gpt-oss:20b,0.1,UPD-ANALYSIS-004-MULTI,Panel Data,Correct
+2025-08-28 17:57:28,gpt-oss:20b,0.1,UPD-ANALYSIS-005-MULTI,Robust Standard Errors,Correct
+2025-08-28 17:57:34,gpt-oss:20b,0.1,UPD-ANALYSIS-006-MULTI,Margins,Correct
+2025-08-28 17:57:37,gpt-oss:20b,0.1,UPD-PLOT-001-MULTI,Scatter Plots,Correct
+2025-08-28 17:57:39,gpt-oss:20b,0.1,UPD-PLOT-002-MULTI,Postestimation Graphing,Correct
+2025-08-28 17:57:44,gpt-oss:20b,0.1,UPD-PLOT-003-MULTI,Saving Graphs,Correct
+2025-08-28 17:58:03,gemma3:4b,0.1,UPD-SYN-001-MULTI,Operators,Correct
+2025-08-28 17:58:04,gemma3:4b,0.1,UPD-SYN-002-MULTI,Do-file Syntax,Incorrect
+2025-08-28 17:58:06,gemma3:4b,0.1,UPD-SYN-003-MULTI,Naming Conventions,Incorrect
+2025-08-28 17:58:08,gemma3:4b,0.1,UPD-SYN-004-MULTI,Macros,Correct
+2025-08-28 17:58:09,gemma3:4b,0.1,UPD-SYN-005-MULTI,Loops,Incorrect
+2025-08-28 17:58:11,gemma3:4b,0.1,UPD-SYN-006-MULTI,Wildcards,Correct
+2025-08-28 17:58:12,gemma3:4b,0.1,UPD-DM-001-MULTI,Memory Management,Correct
+2025-08-28 17:58:13,gemma3:4b,0.1,UPD-DM-002-MULTI,Combining Datasets,Correct
+2025-08-28 17:58:15,gemma3:4b,0.1,UPD-DM-003-MULTI,Data Import,Correct
+2025-08-28 17:58:17,gemma3:4b,0.1,UPD-DM-004-MULTI,Merging Datasets,Correct
+2025-08-28 17:58:18,gemma3:4b,0.1,UPD-DM-005-MULTI,Reshape Operations,Incorrect
+2025-08-28 17:58:20,gemma3:4b,0.1,UPD-DM-006-MULTI,Preserve/Restore,Correct
+2025-08-28 17:58:21,gemma3:4b,0.1,UPD-MANIP-001-MULTI,Date and Time Variables,Incorrect
+2025-08-28 17:58:23,gemma3:4b,0.1,UPD-MANIP-002-MULTI,String Conversion,Correct
+2025-08-28 17:58:24,gemma3:4b,0.1,UPD-MANIP-003-MULTI,Categorical Variables,Incorrect
+2025-08-28 17:58:26,gemma3:4b,0.1,UPD-MANIP-004-MULTI,egen Functions,Correct
+2025-08-28 17:58:27,gemma3:4b,0.1,UPD-MANIP-005-MULTI,Factor Variables,Correct
+2025-08-28 17:58:29,gemma3:4b,0.1,UPD-MANIP-006-MULTI,System Variables,Correct
+2025-08-28 17:58:30,gemma3:4b,0.1,UPD-ANALYSIS-001-MULTI,Postestimation Commands,Correct
+2025-08-28 17:58:32,gemma3:4b,0.1,UPD-ANALYSIS-002-MULTI,Hypothesis Testing,Correct
+2025-08-28 17:58:33,gemma3:4b,0.1,UPD-ANALYSIS-003-MULTI,Estimation Workflow,Incorrect
+2025-08-28 17:58:35,gemma3:4b,0.1,UPD-ANALYSIS-004-MULTI,Panel Data,Correct
+2025-08-28 17:58:36,gemma3:4b,0.1,UPD-ANALYSIS-005-MULTI,Robust Standard Errors,Incorrect
+2025-08-28 17:58:38,gemma3:4b,0.1,UPD-ANALYSIS-006-MULTI,Margins,Correct
+2025-08-28 17:58:39,gemma3:4b,0.1,UPD-PLOT-001-MULTI,Scatter Plots,Correct
+2025-08-28 17:58:41,gemma3:4b,0.1,UPD-PLOT-002-MULTI,Postestimation Graphing,Correct
+2025-08-28 17:58:42,gemma3:4b,0.1,UPD-PLOT-003-MULTI,Saving Graphs,Incorrect
+2025-08-28 18:03:10,gemma3:12b,0.1,UPD-SYN-001-MULTI,Operators,Correct
+2025-08-28 18:03:12,gemma3:12b,0.1,UPD-SYN-002-MULTI,Do-file Syntax,Incorrect
+2025-08-28 18:03:15,gemma3:12b,0.1,UPD-SYN-003-MULTI,Naming Conventions,Incorrect
+2025-08-28 18:03:17,gemma3:12b,0.1,UPD-SYN-004-MULTI,Macros,Incorrect
+2025-08-28 18:03:19,gemma3:12b,0.1,UPD-SYN-005-MULTI,Loops,Incorrect
+2025-08-28 18:03:21,gemma3:12b,0.1,UPD-SYN-006-MULTI,Wildcards,Correct
+2025-08-28 18:03:24,gemma3:12b,0.1,UPD-DM-001-MULTI,Memory Management,Incorrect
+2025-08-28 18:03:26,gemma3:12b,0.1,UPD-DM-002-MULTI,Combining Datasets,Correct
+2025-08-28 18:03:28,gemma3:12b,0.1,UPD-DM-003-MULTI,Data Import,Correct
+2025-08-28 18:03:30,gemma3:12b,0.1,UPD-DM-004-MULTI,Merging Datasets,Correct
+2025-08-28 18:03:32,gemma3:12b,0.1,UPD-DM-005-MULTI,Reshape Operations,Correct
+2025-08-28 18:03:34,gemma3:12b,0.1,UPD-DM-006-MULTI,Preserve/Restore,Correct
+2025-08-28 18:03:37,gemma3:12b,0.1,UPD-MANIP-001-MULTI,Date and Time Variables,Correct
+2025-08-28 18:03:39,gemma3:12b,0.1,UPD-MANIP-002-MULTI,String Conversion,Correct
+2025-08-28 18:03:41,gemma3:12b,0.1,UPD-MANIP-003-MULTI,Categorical Variables,Correct
+2025-08-28 18:03:43,gemma3:12b,0.1,UPD-MANIP-004-MULTI,egen Functions,Correct
+2025-08-28 18:03:45,gemma3:12b,0.1,UPD-MANIP-005-MULTI,Factor Variables,Correct
+2025-08-28 18:03:48,gemma3:12b,0.1,UPD-MANIP-006-MULTI,System Variables,Correct
+2025-08-28 18:03:50,gemma3:12b,0.1,UPD-ANALYSIS-001-MULTI,Postestimation Commands,Correct
+2025-08-28 18:03:52,gemma3:12b,0.1,UPD-ANALYSIS-002-MULTI,Hypothesis Testing,Correct
+2025-08-28 18:03:54,gemma3:12b,0.1,UPD-ANALYSIS-003-MULTI,Estimation Workflow,Incorrect
+2025-08-28 18:03:56,gemma3:12b,0.1,UPD-ANALYSIS-004-MULTI,Panel Data,Correct
+2025-08-28 18:03:58,gemma3:12b,0.1,UPD-ANALYSIS-005-MULTI,Robust Standard Errors,Correct
+2025-08-28 18:04:00,gemma3:12b,0.1,UPD-ANALYSIS-006-MULTI,Margins,Correct
+2025-08-28 18:04:02,gemma3:12b,0.1,UPD-PLOT-001-MULTI,Scatter Plots,Correct
+2025-08-28 18:04:04,gemma3:12b,0.1,UPD-PLOT-002-MULTI,Postestimation Graphing,Correct
+2025-08-28 18:04:06,gemma3:12b,0.1,UPD-PLOT-003-MULTI,Saving Graphs,Correct
